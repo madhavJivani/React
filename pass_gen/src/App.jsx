@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function generatePassword(length, includeNumbers, includeChars) {
   const lowercase = "abcdefghijklmnopqrstuvwxyz";
@@ -62,22 +62,22 @@ function App() {
 
 
 
-  const handleLengthChange = (e) => {
+  const handleLengthChange = useCallback((e) => {
     setLength(parseInt(e.target.value, 10));
-  };
+  }, []);
 
-  const handleIncludeNumbersChange = (e) => {
+  const handleIncludeNumbersChange = useCallback((e) => {
     setIncludeNumbers(e.target.checked);
-  };
+  }, []);
 
-  const handleIncludeCharsChange = (e) => {
+  const handleIncludeCharsChange = useCallback((e) => {
     setIncludeChars(e.target.checked);
-  };
+  }, []);
 
-  const copyToClipboard = () => {
-    setFade(true);
+  const copyToClipboard = useCallback(() => {
     navigator.clipboard.writeText(password);
-  };
+  }, [password]);
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-800">
