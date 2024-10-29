@@ -28,6 +28,7 @@ function App() {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
+    setFade(true)
     const newPassword = generatePassword(length, includeNumbers, includeChars);
     setPassword(newPassword);
     setFade(false);
@@ -76,7 +77,8 @@ function App() {
 
   const copyToClipboard = useCallback(() => {
     navigator.clipboard.writeText(password);
-  }, [password]);
+    setFade(true)
+  });
 
 
   return (
